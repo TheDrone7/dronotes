@@ -6,6 +6,6 @@ import notesRouter from './routes/notes';
 const app = express();
 
 app.use('/', userRouter);
-app.use('/notes', notesRouter)
+app.use('/notes', notesRouter);
 
 export default app;

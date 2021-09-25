@@ -1,11 +1,11 @@
 import cookies from 'cookie-parser';
 import bodyParser from 'body-parser';
-import app from "./api";
+import app from './api';
 
 export default {
   head: {
     title: 'Home',
-    titleTemplate: titleChunk => titleChunk ? `${titleChunk} | DroNotes` : 'DroNotes',
+    titleTemplate: titleChunk => (titleChunk ? `${titleChunk} | DroNotes` : 'DroNotes'),
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -14,33 +14,25 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://unpkg.com/katex@0.12.0/dist/katex.min.css' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Fira+Code&family=PT+Sans&family=Montserrat&family=Raleway:wght@300&family=Material+Icons&display=swap' }
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Fira+Code&family=PT+Sans&family=Montserrat&family=Raleway:wght@300&family=Material+Icons&display=swap'
+      }
     ]
   },
-  css: [
-    '~/assets/prism.css',
-    '~/assets/view.css',
-    '~/assets/output.css'
-  ],
+  css: ['~/assets/prism.css', '~/assets/view.css', '~/assets/output.css'],
 
-  plugins: [
-    { src: '~/plugins/editor.js', mode: 'client' }
-  ],
+  plugins: [{ src: '~/plugins/editor.js', mode: 'client' }],
   components: true,
-  modules: [
-    '@chakra-ui/nuxt',
-    '@nuxtjs/emotion',
-    '@nuxtjs/pwa',
-    '@nuxtjs/axios'
-  ],
+  modules: ['@chakra-ui/nuxt', '@nuxtjs/emotion', '@nuxtjs/pwa', '@nuxtjs/axios'],
   buildModules: [],
 
   chakra: {
     extendTheme: {
       fonts: {
-        'heading': '"Montserrat", sans-serif',
-        'body': '"Raleway", sans-serif',
-        'mono': '"Fira Code", monospace'
+        heading: '"Montserrat", sans-serif',
+        body: '"Raleway", sans-serif',
+        mono: '"Fira Code", monospace'
       },
       colors: {
         gray: {
@@ -63,10 +55,7 @@ export default {
   build: {},
 
   compilerOptions: {
-    types: [
-      '@nuxt/types',
-      '@nuxtjs/axios'
-    ]
+    types: ['@nuxt/types', '@nuxtjs/axios']
   },
 
   serverMiddleware: [
@@ -74,4 +63,4 @@ export default {
     { path: '/', handler: bodyParser.json() },
     { path: '/', handler: app }
   ]
-}
+};

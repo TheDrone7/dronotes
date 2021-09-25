@@ -7,12 +7,12 @@ export const encodeUser = (userId, password) => {
   let encrypted = cipher.update(`${userId}:${password}`, 'utf-8', 'hex');
   encrypted += cipher.final('hex');
   return encrypted.toString();
-}
+};
 
-export const decodeUser = (encrypted) => {
+export const decodeUser = encrypted => {
   const decipher = createDecipheriv('aes-256-cbc', Buffer.from(key), Buffer.from(iv));
   let decrypted = decipher.update(Buffer.from(encrypted, 'hex'));
   decrypted += decipher.final();
   decrypted = decrypted.toString('utf8');
-  return {id: decrypted.split(':')[0], password: decrypted.split(':')[1]};
-}
+  return { id: decrypted.split(':')[0], password: decrypted.split(':')[1] };
+};

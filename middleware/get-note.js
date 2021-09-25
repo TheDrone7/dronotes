@@ -1,12 +1,15 @@
 import { parse } from 'cookie';
 
-export default async (ctx) => {
+export default async ctx => {
   const cookies = process.server ? parse(ctx.req.headers.cookie || '') : parse(document.cookie || '');
   if (cookies['user.id']) {
     if (ctx.req) {
-      const notesData = await ctx.$axios.$get(`http${ctx.req.headers.host.includes('localhost') ? '' : 's'}://${ctx.req.headers.host}/notes/${ctx.params.id}`, {
-        headers: ctx.req.headers
-      });
+      const notesData = await ctx.$axios.$get(
+        `http${ctx.req.headers.host.includes('localhost') ? '' : 's'}://${ctx.req.headers.host}/notes/${ctx.params.id}`,
+        {
+          headers: ctx.req.headers
+        }
+      );
       if (!notesData || notesData.error) ctx.redirect('/');
       else ctx.store.commit('setCurrent', notesData);
     } else if (document) {
@@ -15,4 +18,4 @@ export default async (ctx) => {
       else ctx.store.commit('setCurrent', notesData);
     }
   } else ctx.redirect('/');
-}
+};

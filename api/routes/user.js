@@ -1,22 +1,22 @@
-import { Router} from 'express';
-import {decodeUser, encodeUser} from '../crypto';
-import {createUser, fetchUser, fetchUserByName} from '../../db';
-import {createHash} from 'crypto';
+import { Router } from 'express';
+import { decodeUser, encodeUser } from '../crypto';
+import { createUser, fetchUser, fetchUserByName } from '../../db';
+import { createHash } from 'crypto';
 
-const router = new Router()
+const router = new Router();
 
 router.get('/get-user', async (req, res) => {
   if (req.cookies['user.id']) {
     try {
       const userDetails = decodeUser(req.cookies['user.id']);
-      const user = await fetchUser(userDetails.id)
+      const user = await fetchUser(userDetails.id);
       if (user.error) res.json({ error: user.error });
       else res.json({ user });
     } catch (e) {
       res.json({ error: 'Invalid uid.' });
     }
   } else res.json({ error: 'No uid.' });
-})
+});
 
 router.post('/new-user', async (req, res) => {
   if (req.body && req.body.username && req.body.password && req.body.email) {

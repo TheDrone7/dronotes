@@ -12,13 +12,38 @@
         <c-modal-body>
           <box as="form" mt="4">
             <c-form-control mb="2">
-              <c-input placeholder="Username" autocomplete="username" name="username" font-family="mono" type="text" v-model="username" :disabled="disabled" />
+              <c-input
+                placeholder="Username"
+                autocomplete="username"
+                name="username"
+                font-family="mono"
+                type="text"
+                v-model="username"
+                :disabled="disabled"
+              />
             </c-form-control>
             <c-form-control mb="8">
-              <c-input placeholder="Password" autocomplete="current-password" name="password" font-family="mono" type="password" v-model="password" :disabled="disabled" />
+              <c-input
+                placeholder="Password"
+                autocomplete="current-password"
+                name="password"
+                font-family="mono"
+                type="password"
+                v-model="password"
+                :disabled="disabled"
+              />
             </c-form-control>
-            <c-button variant-color="green" w="100%" :isLoading="disabled" loading-text="LOGGING IN..." @click="submitForm">LOGIN</c-button>
-            <c-button variant-color="red" mt="2" mb="4" w="100%" :isLoading="disabled" @click="closeModal">CANCEL</c-button>
+            <c-button
+              variant-color="green"
+              w="100%"
+              :isLoading="disabled"
+              loading-text="LOGGING IN..."
+              @click="submitForm"
+              >LOGIN</c-button
+            >
+            <c-button variant-color="red" mt="2" mb="4" w="100%" :isLoading="disabled" @click="closeModal"
+              >CANCEL</c-button
+            >
           </box>
         </c-modal-body>
       </c-modal-content>
@@ -28,52 +53,52 @@
 </template>
 
 <script lang="js">
-import { CBox as Box, CButton, CModal, CModalContent, CModalHeader, CModalCloseButton, CModalBody, CModalOverlay, CModalFooter, CFormControl, CInput } from '@chakra-ui/vue';
-import { serialize } from "cookie";
+  import { CBox as Box, CButton, CModal, CModalContent, CModalHeader, CModalCloseButton, CModalBody, CModalOverlay, CModalFooter, CFormControl, CInput } from '@chakra-ui/vue';
+  import { serialize } from "cookie";
 
-export default {
-  name: 'App',
-  components: {Box, CButton, CModal, CModalFooter, CModalContent, CModalHeader, CModalCloseButton, CModalBody, CModalOverlay, CInput, CFormControl},
-  data () {
-    return {
-      loginModal: false,
-      username: '',
-      password: '',
-      disabled: false
-    };
-  },
-  middleware: (ctx) => {
-    if (process.server) {
-      if (ctx.req.headers.cookie && ctx.req.headers.cookie.includes('user.id')) ctx.redirect('/user');
-    } else if (process.client) {
-      if (document.cookie && document.cookie.includes('user.id')) ctx.redirect('/user');
-    }
-  },
-  methods: {
-    openModal() {this.loginModal = true;},
-    closeModal() {this.loginModal = false;},
-    notify(title, description, status) {
-      this.$toast({
-        position: 'bottom-right',
-        title, description, status,
-        duration: 5000
-      });
+  export default {
+    name: 'App',
+    components: {Box, CButton, CModal, CModalFooter, CModalContent, CModalHeader, CModalCloseButton, CModalBody, CModalOverlay, CInput, CFormControl},
+    data () {
+      return {
+        loginModal: false,
+        username: '',
+        password: '',
+        disabled: false
+      };
     },
-    async submitForm() {
-      this.disabled = true;
-      const { username, password } = this;
-      if (!username || !password) this.notify('Invalid credentials', 'Please provide your username and password.', 'error');
-      else {
-        const user = await this.$axios.$post('/login', { username, password });
-        if (user && user.success) {
-          document.cookie = serialize('user.id', user.key);
-          window.open('/user', '_self');
-        } else {
-          this.notify('Login Error', user.error || 'Invalid credentials were provided, please verify and try again.', 'error');
-        }
+    middleware: (ctx) => {
+      if (process.server) {
+        if (ctx.req.headers.cookie && ctx.req.headers.cookie.includes('user.id')) ctx.redirect('/user');
+      } else if (process.client) {
+        if (document.cookie && document.cookie.includes('user.id')) ctx.redirect('/user');
       }
-      this.disabled = false;
+    },
+    methods: {
+      openModal() {this.loginModal = true;},
+      closeModal() {this.loginModal = false;},
+      notify(title, description, status) {
+        this.$toast({
+          position: 'bottom-right',
+          title, description, status,
+          duration: 5000
+        });
+      },
+      async submitForm() {
+        this.disabled = true;
+        const { username, password } = this;
+        if (!username || !password) this.notify('Invalid credentials', 'Please provide your username and password.', 'error');
+        else {
+          const user = await this.$axios.$post('/login', { username, password });
+          if (user && user.success) {
+            document.cookie = serialize('user.id', user.key);
+            window.open('/user', '_self');
+          } else {
+            this.notify('Login Error', user.error || 'Invalid credentials were provided, please verify and try again.', 'error');
+          }
+        }
+        this.disabled = false;
+      }
     }
   }
-}
 </script>
