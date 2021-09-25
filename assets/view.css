@@ -1,0 +1,98 @@
+.output {
+  display: flex;
+  flex-direction: column;
+  font-family: 'PT Sans', sans-serif !important;
+  font-size: 18px;
+  padding: 0 2rem;
+  overflow-y: auto;
+}
+
+.output h1, .output h2, .output h3 {
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.output h4, .output h5, .output h6 {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.output h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+.output h2 {
+  font-size: 1.8rem;
+}
+.output h3 {
+  font-size: 1.6rem;
+}
+
+.output h4 {
+  font-size: 1.4rem;
+}
+.output h5 {
+  font-size: 1.2rem;
+}
+.output h6 {
+  font-size: 1rem;
+}
+
+.output p {
+  margin: 1rem 0 !important;
+}
+
+.output .math-inline {
+  margin: 0 1rem;
+}
+
+.output .math-display {
+  margin: 1rem 0;
+}
+
+.output blockquote {
+  border-left: 8px solid #cc6;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+}
+
+.output blockquote p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.output ol {
+  margin: 1rem 0;
+  list-style-type: decimal;
+}
+
+.output ol ol {
+  margin: 0;
+  list-style-type: lower-roman;
+}
+
+.output li {
+  margin-left: 1.25rem;
+  padding-left: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.output ol ol li, .output ul ul li, .output ol ul li, .output ul ol li {
+  margin-bottom: 0;
+}
+
+.output pre {
+  margin: 2rem 0 !important;
+  overflow: visible;
+}
+
+.output hr {
+  width: 75%;
+  align-self: center;
+  background: #999;
+  margin-bottom: 1rem;
+}
