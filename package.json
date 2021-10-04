@@ -26,7 +26,7 @@
     "mathjax": "3",
     "micromark": "^3.0.5",
     "micromark-extension-gfm": "^1.0.0",
-    "micromark-extension-math": "^2.0.0",
+    "micromark-extension-math": "^2.0.1",
     "moment": "^2.29.1",
     "nuxt": "^2.14.6",
     "prismjs": "^1.25.0",
