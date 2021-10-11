@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "firebase-admin": "^9.11.1",
     "mathjax": "3",
-    "micromark": "^3.0.5",
+    "micromark": "^3.0.7",
     "micromark-extension-gfm": "^1.0.0",
     "micromark-extension-math": "^2.0.0",
     "moment": "^2.29.1",
