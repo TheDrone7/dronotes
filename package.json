@@ -19,7 +19,7 @@
     "check-password-strength": "^2.0.3",
     "codejar": "^3.5.0",
     "cookie": "^0.4.1",
-    "cookie-parser": "^1.4.5",
+    "cookie-parser": "^1.4.6",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "firebase-admin": "^9.11.1",
