@@ -22,7 +22,7 @@
     "cookie-parser": "^1.4.5",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
-    "firebase-admin": "^9.11.1",
+    "firebase-admin": "^10.3.0",
     "mathjax": "3",
     "micromark": "^3.0.5",
     "micromark-extension-gfm": "^1.0.0",
